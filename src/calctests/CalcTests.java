@@ -2,12 +2,17 @@ package calctests;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import java.util.*;
 
-import calclogic.CalcLogic;
+import calclogic.*;
+
+
 
 class CalcTests {
+	
 	
 	public static CalcLogic calc;
 	
@@ -37,9 +42,9 @@ class CalcTests {
 	@Test
 	void testDivision_divisionCheckResult() {
 		
-		double actual = calc.div(20.5d, 2d);
+		double actual = calc.div(20.5d, 1d);
 		
-		assertEquals(10.25d, actual, 0.01);
+		assertEquals(20.5d, actual, 0.01);
 		
 	}
 	
@@ -60,5 +65,46 @@ class CalcTests {
 		assertEquals(1d, actual, 0.01);
 		
 	}
+	
+	@Test
+	public void extractOperands_extractComplexExpressionOperandsAsArrayList() {
+		
+		//Arrange
+		
+		ArrayList<String> expectedArray = new ArrayList<String>();
+		expectedArray.add("1.645");
+		expectedArray.add("1.444");
+		expectedArray.add("1");
+		expectedArray.add("1.754");
+		expectedArray.add("6.01");
+		
+		//Act
+		ArrayList<String> actualArray = 
+		calc.extractOperands("1.645+1.444/1*1.754%6.01");
+		
+		//Assert
+		Assert.assertArrayEquals(expectedArray.toArray(), actualArray.toArray());
+	
+	}
+	
+	@Test
+	public void extractOperators_extractOperandsAsArrayList() {
+		
+		//Arrange
+		
+		ArrayList<String> expectedArray = new ArrayList<String>();
+		expectedArray.add("+");
+		expectedArray.add("-");
+		expectedArray.add("%");
+		expectedArray.add("*");
+		//Act
+		ArrayList<String> actualArray = 
+		calc.extractOperators("1.42+2.345-1.77665%6.57567*2");
+		
+		//Assert
+		Assert.assertArrayEquals(expectedArray.toArray(), actualArray.toArray());
+	
+	}
+	
 
 }
