@@ -113,10 +113,9 @@ public class CalcLogic {
 
 	}
 	
-	public void calcExpression(String input) throws Exception {
+	public double calcExpression(String input) throws Exception {
 		
 		double result = 0;
-		//String operator = null;
 		
 		operands = extractOperands(input);
 		operators = extractOperators(input);
@@ -130,12 +129,14 @@ public class CalcLogic {
 				operands.remove(0);
 				
 			} else {
-				result = calc(firstValue(), setArithmetic(s), result);
+				result = calc(result, setArithmetic(s), firstValue());
+				
 			}
 			
 		}
 		
 		System.out.println(result);
+		return result;
 		
 	}
 	
@@ -145,7 +146,6 @@ public class CalcLogic {
 		
 		double f = Double.parseDouble(first);
 		
-		//operands.remove(0);
 		
 		return f;
 	}
@@ -156,7 +156,6 @@ public class CalcLogic {
 
 		double s = Double.parseDouble(second);
 		
-		//operands.remove(1);
 		
 		return s;
 	}

@@ -69,7 +69,6 @@ class CalcTests {
 	@Test
 	public void extractOperands_extractComplexExpressionOperandsAsArrayList() {
 		
-		//Arrange
 		
 		ArrayList<String> expectedArray = new ArrayList<String>();
 		expectedArray.add("1.645");
@@ -77,12 +76,10 @@ class CalcTests {
 		expectedArray.add("1");
 		expectedArray.add("1.754");
 		expectedArray.add("6.01");
-		
-		//Act
+
 		ArrayList<String> actualArray = 
 		calc.extractOperands("1.645+1.444/1*1.754%6.01");
 		
-		//Assert
 		Assert.assertArrayEquals(expectedArray.toArray(), actualArray.toArray());
 	
 	}
@@ -90,20 +87,25 @@ class CalcTests {
 	@Test
 	public void extractOperators_extractOperandsAsArrayList() {
 		
-		//Arrange
-		
 		ArrayList<String> expectedArray = new ArrayList<String>();
 		expectedArray.add("+");
 		expectedArray.add("-");
 		expectedArray.add("%");
 		expectedArray.add("*");
-		//Act
+
 		ArrayList<String> actualArray = 
 		calc.extractOperators("1.42+2.345-1.77665%6.57567*2");
 		
-		//Assert
 		Assert.assertArrayEquals(expectedArray.toArray(), actualArray.toArray());
 	
+	}
+	
+	@Test
+	public void calculateExpression_calcExpressionCheckResult() throws Exception {
+		
+		double actual = calc.calcExpression("44+2*2/2-2");
+		
+		assertEquals(44d, actual, 0.01);
 	}
 	
 
