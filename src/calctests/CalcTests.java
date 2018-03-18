@@ -9,8 +9,6 @@ import java.util.*;
 
 import calclogic.*;
 
-
-
 class CalcTests {
 	
 	
@@ -43,6 +41,9 @@ class CalcTests {
 	void testDivision_divisionCheckResult() {
 		
 		double actual = calc.div(20.5d, 1d);
+		
+		//Exception is thrown "Can't devide by zero!"
+		//double actual = calc.div(20.5d, 0d);
 		
 		assertEquals(20.5d, actual, 0.01);
 		
@@ -103,9 +104,26 @@ class CalcTests {
 	@Test
 	public void calculateExpression_calcExpressionCheckResult() throws Exception {
 		
-		double actual = calc.calcExpression("44+2*2/2-2");
+		double actual = calc.calcExpression("5+5*5%8");
 		
-		assertEquals(44d, actual, 0.01);
+		//double actual = calc.calcExpression("168.5*2/4+2");
+		//Some expressions that works.
+		//double actual = calc.calcExpression("44+2*2/2-2");
+		//double actual = calc.calcExpression("8-2*2/2+2");
+		//double actual = calc.calcExpression("20.5-2*2/2");
+		//double actual = calc.calcExpression("20/0+4");
+		//double actual = calc.calcExpression("5+5%3");
+		//double actual = calc.calcExpression("2.5*2.5+3");
+		//double actual = calc.calcExpression("5+5*5%8");
+		
+		//Some who don't.
+		//double actual = calc.calcExpression("5*5+2*2");
+		//double actual = calc.calcExpression("5+5%3+2");
+		//double actual = calc.calcExpression("2.5*2-1/2");
+		//double actual = calc.calcExpression("2.5*2.5*2");
+		//double actual = calc.calcExpression("5+5a");
+		
+		assertEquals(2d, actual, 0.001);
 	}
 	
 

@@ -4,9 +4,9 @@ import java.util.*;
 
 public class CalcLogic {
 	
+	//Creating ArrayLists for operators and operands.
 	ArrayList<String> operators = new ArrayList<String>();
 	ArrayList<String> operands = new ArrayList<String>();
-	ArrayList<String> letters = new ArrayList<String>();
 	
 	private enum calculate {plus, minus, division, multi, modulus}
 
@@ -22,6 +22,7 @@ public class CalcLogic {
 
 	public double div(double first, double second) {
 		
+		//If divided by 0, exception is thrown.
 		if(second==0)
 			throw new ArithmeticException("Can't devide by zero!");
 		
@@ -38,7 +39,7 @@ public class CalcLogic {
 		return first%second;
 	}
 	
-	
+	//Method to set arithmetic.
 	public calculate setArithmetic(String str) {
 		
 		calculate rs;
@@ -64,6 +65,7 @@ public class CalcLogic {
 		return null;
 	}
 	
+	//Split input and put operands into correct ArrayList.
 	public ArrayList<String> extractOperands(String expression) {
 		expression = expression.replaceAll(" ", "");
 		operands = new ArrayList<String>(
@@ -72,6 +74,7 @@ public class CalcLogic {
 		return operands;
 	}
 
+	//Split input and put operators into correct ArrayList.
 	public ArrayList<String> extractOperators(String expression) {
 		expression = expression.replaceAll(" ", "");
 		
@@ -85,7 +88,7 @@ public class CalcLogic {
 	}
 	
 	
-	
+	//Method for checking which arithmetic to use depending on rs.
 	private double calc(double first, calculate rs, double second) {
 		
 		double result = 0;
@@ -113,6 +116,11 @@ public class CalcLogic {
 
 	}
 	
+	//Method for calculating the expression.
+	//Goes through the ArrayList with operators.
+	//First calculation needs two values from the ArrayList with operands.
+	//Calculations after that uses result with the next value from operands.
+	//Returns result when finished.
 	public double calcExpression(String input) throws Exception {
 		
 		double result = 0;
@@ -125,37 +133,37 @@ public class CalcLogic {
 			
 			if(s.equals(operators.get(0))) {
 				result = calc(firstValue(), setArithmetic(s), secondValue());
+				//After the first calculation, first and second value from operands list is removed.
 				operands.remove(0);
 				operands.remove(0);
 				
 			} else {
 				result = calc(result, setArithmetic(s), firstValue());
-				
+				//After every calculation, first value from operands list is removed.
+				operands.remove(0);
 			}
 			
 		}
 		
-		System.out.println(result);
+		System.out.println("Result: " + result);
 		return result;
 		
 	}
 	
+	//Gets the first value from the ArrayList with operands.
 	public double firstValue() {
 		
-		String first = operands.get(0);
-		
+		String first = operands.get(0);	
 		double f = Double.parseDouble(first);
-		
 		
 		return f;
 	}
 	
+	//Gets the second value from the ArrayList with operands.
 	public double secondValue() {
 
 		String second = operands.get(1);
-
 		double s = Double.parseDouble(second);
-		
 		
 		return s;
 	}
