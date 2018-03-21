@@ -104,26 +104,17 @@ class CalcTests {
 	@Test
 	public void calculateExpression_calcExpressionCheckResult() throws Exception {
 		
-		double actual = calc.calcExpression("5+5*5%8");
+		double actualOne = calc.calcExpression("5+5*5%8");
+		double actualTwo = calc.calcExpression("5*5+2*2");
+		double actualThree = calc.calcExpression("5+5%3+2");
+		double actualFour = calc.calcExpression("2.5*2-1/2");
+		double actualFive = calc.calcExpression("169*2-4/3");
 		
-		//double actual = calc.calcExpression("168.5*2/4+2");
-		//Some expressions that works.
-		//double actual = calc.calcExpression("44+2*2/2-2");
-		//double actual = calc.calcExpression("8-2*2/2+2");
-		//double actual = calc.calcExpression("20.5-2*2/2");
-		//double actual = calc.calcExpression("20/0+4");
-		//double actual = calc.calcExpression("5+5%3");
-		//double actual = calc.calcExpression("2.5*2.5+3");
-		//double actual = calc.calcExpression("5+5*5%8");
 		
-		//Some who don't.
-		//double actual = calc.calcExpression("5*5+2*2");
-		//double actual = calc.calcExpression("5+5%3+2");
-		//double actual = calc.calcExpression("2.5*2-1/2");
-		//double actual = calc.calcExpression("2.5*2.5*2");
-		//double actual = calc.calcExpression("5+5a");
-		
-		assertEquals(2d, actual, 0.001);
+		assertEquals(2d, actualOne, 0.001);
+		assertEquals(54d, actualTwo, 0.001);
+		assertEquals(3d, actualThree, 0.001);
+		assertEquals(111.333d, actualFive, 0.001);
 	}
 	
 

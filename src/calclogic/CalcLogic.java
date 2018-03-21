@@ -128,20 +128,23 @@ public class CalcLogic {
 		operands = extractOperands(input);
 		operators = extractOperators(input);
 		
+		boolean first = true;
 		
 		for (String s : operators) {
-			
-			if(s.equals(operators.get(0))) {
-				result = calc(firstValue(), setArithmetic(s), secondValue());
-				//After the first calculation, first and second value from operands list is removed.
-				operands.remove(0);
-				operands.remove(0);
-				
-			} else {
-				result = calc(result, setArithmetic(s), firstValue());
-				//After every calculation, first value from operands list is removed.
-				operands.remove(0);
-			}
+
+				if(first) {
+					result = calc(firstValue(), setArithmetic(s), secondValue());
+					//After the first calculation, first and second value from operands list is removed.
+					operands.remove(0);
+					operands.remove(0);
+					
+					first = false;
+					
+				} else {
+					result = calc(result, setArithmetic(s), firstValue());
+					//After every calculation, first value from operands list is removed.
+					operands.remove(0);
+				}	
 			
 		}
 		
